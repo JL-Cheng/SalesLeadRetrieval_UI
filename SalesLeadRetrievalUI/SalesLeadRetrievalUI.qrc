@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/SalesLeadRetrievalUI">
+        <file alias="BeginBackground">Resources/UI/BeginBackground.png</file>
+        <file alias="SearchBackground">Resources/UI/SearchBackground.png</file>
+    </qresource>
+</RCC>
