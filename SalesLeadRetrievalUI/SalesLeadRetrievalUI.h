@@ -9,6 +9,7 @@
 //加入界面头文件
 #include"BeginBackground.h"
 #include"SearchBackground.h"
+#include"WorkerThread.h"
 #include"CP_MyIndex.h"
 
 #include<QStackedWidget>
@@ -16,6 +17,7 @@
 
 class extractWebRI;
 class myIndex;
+class WorkerThread;
 
 class SalesLeadRetrievalUI : public QMainWindow
 {
@@ -31,6 +33,9 @@ private slots:
 
 	void toBeginBackground();//进入开始界面
 	void toSearchBackground();//进入搜索界面
+
+	void startAnalyseThread();//开启网页分析的线程
+	void startSearchThread(QString q_str);//开启数据搜索的线程
 
 protected:
 	void keyPressEvent(QKeyEvent *event);//处理按键信息

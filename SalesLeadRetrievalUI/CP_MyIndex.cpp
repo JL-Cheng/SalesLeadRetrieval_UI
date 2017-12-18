@@ -15,15 +15,6 @@ myIndex::~myIndex()
 	delete OWR;
 }
 
-void myIndex::operateWeb(int number)
-{
-	for (int i = 0; i < number; i++)
-	{
-		OWR->webRIAnalysis(i);
-		OWR->webRISegment(i);
-		emit AnalyseNumber(i + 1);
-	}
-}
 
 void myIndex::createIndex()
 {
@@ -122,6 +113,7 @@ void myIndex::Search(QString q_str)
 	word_str.SplitString(str_vector, separator_str);
 	for (int i = 0; i < str_vector.size(); i++)
 	{
+		msleep(50);
 		searchWord(str_vector[i], record);
 		word.append(QString::fromLocal8Bit(str_vector[i].m_str.c_str()));
 	}
@@ -129,6 +121,7 @@ void myIndex::Search(QString q_str)
 	QStringList *result = new QStringList[3];
 	for (int i = 0; i < number + 1; i++)
 	{
+		msleep(50);
 		if (record[i] != 0)
 		{
 			myStringNode *temp_node = OWR->analysis_list[i].head->next;

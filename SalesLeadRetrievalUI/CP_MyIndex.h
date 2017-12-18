@@ -8,8 +8,9 @@
 #include"CP_OperateWebRI.h"
 
 #include<QObject>
+#include <QThread>
 
-class myIndex:public QObject
+class myIndex:public QThread
 {
 	Q_OBJECT
 
@@ -31,7 +32,6 @@ public:
 signals:
 	void readyToSearch();
 	void findResult(QStringList *result,QStringList word);
-	void AnalyseNumber(int number);
 
 private:
 

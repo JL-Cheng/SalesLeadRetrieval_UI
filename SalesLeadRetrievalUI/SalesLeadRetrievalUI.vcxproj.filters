@@ -112,6 +112,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CP_MyIndex.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_WorkerThread.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_WorkerThread.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkerThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="SalesLeadRetrievalUI.h">
@@ -142,6 +151,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="CP_OperateWebRI.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="WorkerThread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

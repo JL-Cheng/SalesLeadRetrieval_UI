@@ -17,23 +17,20 @@ SalesLeadRetrievalUI::SalesLeadRetrievalUI(QWidget *parent)
 	connect(this, SIGNAL(changeBackgroundNo(int)), this, SLOT(updateBackground(int)));//更换界面
 	connect(index->OWR->webRI, &extractWebRI::ReadNumber,
 		beginBackground, &BeginBackground::getReadNumber);
-	connect(index, &myIndex::AnalyseNumber,
-		beginBackground, &BeginBackground::getAnalyseNumber);
 	connect(index, &myIndex::readyToSearch, this, &SalesLeadRetrievalUI::toSearchBackground);
-	connect(searchBackground, &SearchBackground::toSearch, index, &myIndex::Search);
+	connect(searchBackground, &SearchBackground::toSearch, this, &SalesLeadRetrievalUI::startSearchThread);
 	connect(index, &myIndex::findResult, searchBackground, &SearchBackground::showResult);
 
 	this->show();
 
 	index->OWR->webRI->ReadWebsite(index->OWR->webRI_vector);
-	index->operateWeb(total);
-	index->createIndex();
+	startAnalyseThread();
 }
 
 void SalesLeadRetrievalUI::init()
 {
 	//初始化各项变量
-	total = 2000;
+	total = 20;
 	BackgroundController = new QStackedWidget(this);
 	beginBackground = new BeginBackground(total,this);
 	searchBackground = new SearchBackground(this);
@@ -67,6 +64,24 @@ void SalesLeadRetrievalUI::toSearchBackground()
 {
 	BackgroundNo = 1;
 	emit changeBackgroundNo(BackgroundNo);
+}
+
+void SalesLeadRetrievalUI::startAnalyseThread()
+{
+	WorkerThread *workerThread = new WorkerThread(total,index,this);
+	connect(workerThread, &WorkerThread::AnalyseNumber, beginBackground, &BeginBackground::getAnalyseNumber);
+	// 线程结束后，自动销毁
+	connect(workerThread, SIGNAL(finished()), workerThread, SLOT(deleteLater()));
+	workerThread->start();
+}
+
+void SalesLeadRetrievalUI::startSearchThread(QString q_str)
+{
+	WorkerThread *workerThread = new WorkerThread(q_str,total, index, this);
+	connect(workerThread, &WorkerThread::AnalyseNumber, beginBackground, &BeginBackground::getAnalyseNumber);
+	// 线程结束后，自动销毁
+	connect(workerThread, SIGNAL(finished()), workerThread, SLOT(deleteLater()));
+	workerThread->start();
 }
 
 void SalesLeadRetrievalUI::keyPressEvent(QKeyEvent *event)
