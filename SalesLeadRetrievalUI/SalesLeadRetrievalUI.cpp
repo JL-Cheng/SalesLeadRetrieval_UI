@@ -30,7 +30,7 @@ SalesLeadRetrievalUI::SalesLeadRetrievalUI(QWidget *parent)
 void SalesLeadRetrievalUI::init()
 {
 	//初始化各项变量
-	total = 20;
+	total = 100;
 	BackgroundController = new QStackedWidget(this);
 	beginBackground = new BeginBackground(total,this);
 	searchBackground = new SearchBackground(this);
@@ -82,9 +82,4 @@ void SalesLeadRetrievalUI::startSearchThread(QString q_str)
 	// 线程结束后，自动销毁
 	connect(workerThread, SIGNAL(finished()), workerThread, SLOT(deleteLater()));
 	workerThread->start();
-}
-
-void SalesLeadRetrievalUI::keyPressEvent(QKeyEvent *event)
-{
-
 }

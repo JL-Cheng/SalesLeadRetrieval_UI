@@ -81,6 +81,17 @@ void SearchBackground::showResult(QStringList *resultList, QStringList wordList)
 	resultLabel->show();
 }
 
+void SearchBackground::search()
+{
+	searchStr = searchEdit->text();
+	if (searchStr != oldStr)
+	{
+		emit toSearch(searchStr);
+		resultLabel->setText("查询中...");
+		oldStr = searchStr;
+	}
+}
+
 void SearchBackground::resizeEvent(QResizeEvent *event)
 {
 	Q_UNUSED(event);//避免编译器报警
@@ -101,4 +112,19 @@ void SearchBackground::resizeEvent(QResizeEvent *event)
 	searchEdit->setGeometry(geometry().x() + 100, geometry().y() + 150, 600, 50);
 	numberLabel->setGeometry(geometry().x() + 100, geometry().y() + 200, 700, 50);
 	scrollArea->setGeometry(geometry().x() + 100, geometry().y() + 250, 700, 500);
+}
+
+void SearchBackground::keyPressEvent(QKeyEvent *event)
+{
+	switch (event->key())
+	{
+	case Qt::Key_Enter://用回车键进行搜索
+		search();
+		break;
+	case Qt::Key_Return:
+		search();
+		break;
+	default:
+		break;
+	}
 }

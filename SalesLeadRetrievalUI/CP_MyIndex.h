@@ -30,8 +30,8 @@ public:
 	void Search(QString q_str);
 
 signals:
-	void readyToSearch();
-	void findResult(QStringList *result,QStringList word);
+	void readyToSearch();//发出可以搜索的信号，切换到搜索界面
+	void findResult(QStringList *result,QStringList word);//将搜索结果发送到搜索界面
 
 private:
 

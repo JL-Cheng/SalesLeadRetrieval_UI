@@ -69,7 +69,7 @@ void extractWebRI::ReadWebsite(vector<myString> &str_vec)
 		}
 		else
 		{
-			qDebug() << m_Reply->errorString();
+			qDebug() << m_Reply->errorString();//Êä³ö´íÎóĞÅºÅ
 		}
 		emit ReadNumber(i + 1);
 	}

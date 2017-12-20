@@ -29,15 +29,7 @@ signals:
 	void toSearch(QString q_str);
 
 private slots:
-	void search() 
-	{
-		searchStr = searchEdit->text();
-		if (searchStr != oldStr)
-		{
-			emit toSearch(searchStr);
-			oldStr = searchStr;
-		}
-	}
+	void search();
 
 public slots:
 	void showResult(QStringList *resultList, QStringList wordList);
@@ -49,7 +41,7 @@ public slots:
 protected:
 	void init();//界面初始化函数
 	void resizeEvent(QResizeEvent*event);//使背景图片填充整个界面
-
+	void keyPressEvent(QKeyEvent *event);//处理按键信息
 private:
 	Ui::SearchBackground ui;
 

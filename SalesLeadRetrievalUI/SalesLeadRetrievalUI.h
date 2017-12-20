@@ -37,9 +37,6 @@ private slots:
 	void startAnalyseThread();//开启网页分析的线程
 	void startSearchThread(QString q_str);//开启数据搜索的线程
 
-protected:
-	void keyPressEvent(QKeyEvent *event);//处理按键信息
-
 signals:
 	void changeBackgroundNo(int number);//更新界面编号
 

@@ -104,7 +104,7 @@ void myIndex::createIndex()
 void myIndex::Search(QString q_str)
 {
 	vector<myString> str_vector;
-	QStringList word;
+	QStringList word;//存储分词结果
 	myString separator_str(" ");//分割字符串
 	myString word_str = qstr2str(q_str);
 	int *record = new int[number + 1];
@@ -113,7 +113,7 @@ void myIndex::Search(QString q_str)
 	word_str.SplitString(str_vector, separator_str);
 	for (int i = 0; i < str_vector.size(); i++)
 	{
-		msleep(50);
+		msleep(5);
 		searchWord(str_vector[i], record);
 		word.append(QString::fromLocal8Bit(str_vector[i].m_str.c_str()));
 	}
@@ -121,7 +121,7 @@ void myIndex::Search(QString q_str)
 	QStringList *result = new QStringList[3];
 	for (int i = 0; i < number + 1; i++)
 	{
-		msleep(50);
+		msleep(5);
 		if (record[i] != 0)
 		{
 			myStringNode *temp_node = OWR->analysis_list[i].head->next;
@@ -144,7 +144,7 @@ void myIndex::Search(QString q_str)
 			delete temp_node;
 		}
 	}
-	emit findResult(result, word);
+	emit findResult(result, word);//将搜索结果发送到显示界面
 	delete[]record;
 }
 

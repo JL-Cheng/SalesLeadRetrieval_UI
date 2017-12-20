@@ -37,7 +37,8 @@ public:
 	vector<myString> Website;//存储网页地址
 
 private:
-	void GetWebsite();//读取CSV文件中num个网址
+	//读取CSV文件中num个网址
+	void GetWebsite();
 	//进行qstring向string的转换
 	string qstr2str(const QString qstr)
 	{
@@ -45,7 +46,7 @@ private:
 		return string(cdata);
 	}
 	char* FileName;//打开文件的文件名
-	QNetworkAccessManager *m_NetManger;
+	QNetworkAccessManager *m_NetManger;//负责读取网页
 	int number;
 
 };

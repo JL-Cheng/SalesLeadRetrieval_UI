@@ -40,6 +40,8 @@ void WorkerThread::run()
 				emit AnalyseNumber(i + 1);
 			}
 			myindex->createIndex();
+			vector<myString>(myindex->OWR->webRI_vector).swap(myindex->OWR->webRI_vector);
+			return;
 		}
 
 		else if (status == 1)
